@@ -48,6 +48,26 @@ app.get('/delay', (request, response) => {
   }, 3000)
 })
 
+//jquery服务
+app.all('/jquery-server', (request, response) => {
+  //设置响应头 设置允许跨域
+  response.setHeader('Access-Control-Allow-Origin', '*')
+  // response.send('jquery ajax')
+  const data = { name: 'hahah' }
+  response.send(JSON.stringify(data))
+})
+
+//axios服务
+app.all('/axios-server', (request, response) => {
+  //设置响应头 设置允许跨域
+  response.setHeader('Access-Control-Allow-Origin', '*')
+  // axios中设置了请求头信息
+  response.setHeader('Access-Control-Allow-Headers', '*');
+  // response.send('jquery ajax')
+  const data = { name: 'hahah' }
+  response.send(JSON.stringify(data))
+})
+
 //4. 监听端口启动服务
 app.listen(8000, () => {
   console.log("服务已经启动, 8000 端口监听中....");
