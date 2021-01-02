@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>Examples</title>
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <link href="" rel="stylesheet" />
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
+  </head>
+  <body>
+    <div id="box">
+      父组件
+      <!-- 父组件接收到了 子组件的状态 -->
+      <child @myevent2="handleEvent"></child>
+      <!-- 父组件接收到了 子组件的状态 -->
+      <child @myevent2="handleEvent($event)"></child>
+      <!-- 父组件接收到了 undefined -->
+      <child @myevent2="handleEvent()"></child>
+    </div>
+
+    <script type="text/javascript">
+      //子组件
+      Vue.component("child", {
+        template: `<div>
+          child组件
+          <button @click="payMoney()">click</button>
+        </div>`,
+
+        data() {
+          return {
+            childname: "子组件的状态",
+          }
+        },
+        methods: {
+          // 将子组件中的childname传递给父组件
+          payMoney() {
+            this.$emit("myevent2", this.childname) //分发事件 传递子组件的状态
+          },
+        },
+      })
+
+      new Vue({
+        el: "#box",
+        methods: {
+          handleEvent(ev) {
+            console.log("父组件接收到了", ev)
+          },
+        },
+      })
+    </script>
+  </body>
+</html>
