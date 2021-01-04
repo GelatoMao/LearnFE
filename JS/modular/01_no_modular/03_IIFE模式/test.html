@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>03_IIFE模式</title>
+  </head>
+  <body>
+    <script type="text/javascript" src="module.js"></script>
+    <script type="text/javascript">
+      // 这种方式是不能够改变数据 只能够取数据 即使将data添加到module1对象中 改变的也只是module1对象中的data值 不是原函数中的data值
+      module1.data = 45678
+      module1.test() //haha
+      module1.test2() //HAHA
+    </script>
+  </body>
+</html>
