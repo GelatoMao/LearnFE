@@ -1,0 +1,27 @@
+<!-- pages/demo03/demo03.wxml -->
+<!-- 1 text 相当于以前web中的 span标签 行内元素  不会换行
+  2 view 相当于以前web中的 div标签 块级元素  会换行
+  3 checkbox 以前的复选框标签 -->
+<!-- 字符串 -->
+<view>{{msg}}</view>
+<!-- 数字类型 -->
+<view>{{num}}</view>
+<!-- 布尔类型 -->
+<view>今天健身了吗？{{isExercise}}</view>
+<!-- object类型 对象后面必须要带属性 -->
+<view>{{person.age}}</view>
+<view>{{person.height}}</view>
+<!-- 在标签的属性中使用 一定要加引号 在wxml中可以显示 -->
+<view data-num="{{num}}"></view>
+<!-- 使用布尔类型充当属性 checked 
+  字符串和花括号之间一定不要存在空格 否则会导致识别失败
+-->
+<view>
+  <checkbox checked="{{true}}" />
+</view>
+<view>
+  <checkbox checked="{{false}}" />
+</view>
+<view>
+  <checkbox checked="  {{isChecked}}" />
+</view>
