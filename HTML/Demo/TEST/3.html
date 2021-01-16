@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav {
+      /* 去除项目符号 */
+      list-style: none;
+      /* 为ul设置背景颜色 */
+      background-color: #6495Ed;
+      /* 设置宽度 */
+      width: 1000px;
+      /* 设置元素居中 */
+      margin: 50px auto;
+      /* 解决高度塌陷 */
+      overflow: hidden;
+    }
+
+    /* 设置li */
+    .nav li {
+      /* 设置li向左浮动 */
+      float: left;
+      /* 为li指定宽度 */
+      /* 但要注意这边一般是给a指定宽度，因为如果单纯是给li指定宽度的话，整个超链接部分只有在点击字的部分才能起作用，点击li的部分是没用的，所以宽度应该给a标签设置，而不是给li设置  但要注意a是内联元素，不能设置宽度，所以在给a设置宽度之前，要将其转化成块元素  */
+      /* 注意设置宽度的时候如果使用百分比的话，是看父元素的宽度的，a的父元素是li，但是li的宽度是被子元素a撑开的，所以此时用百分比就会失效，要么直接width:250px 要么先给li设置：width:25%   再给 a设置： width:100% 这样li就会有宽度了
+      width: 25%; */
+      width: 25%;
+    }
+
+    .nav a {
+      /* 将a转换成块元素 */
+      display: block;
+      /* 为a指定宽度 */
+      width: 100%;
+      /* 为文字设置居中 */
+      text-align: center;
+      /* 设置上下内边距 */
+      padding: 5px 0;
+      /* 去除下划线 */
+      text-decoration: none;
+      color: white;
+      font-weight: bold;
+    }
+
+    .nav a:hover {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+  <!-- 创建导航条结构 --> 
+  <ul class="nav">
+    <li><a href="#">首页</a></li>
+    <li><a href="#">首页</a></li>
+    <li><a href="#">首页</a></li>
+    <li><a href="#">首页</a></li>
+  </ul>
+</body>
+</html>
