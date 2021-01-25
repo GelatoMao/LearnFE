@@ -107,7 +107,7 @@ console.log(baseConverter(100345, 8)); // 303771
 console.log(baseConverter(100345, 16)); // 187F9
 
 
-// 2.判断字符串符号的括号是否有效 力扣20
+// 判断字符串符号的括号是否有效 力扣20
 // 扫描字符串，遇左括号入栈，遇到和栈顶括号类型匹配的右括号就出栈，类型不匹配直接判定不合法，最后栈空了就合法，否则不合法
 
 /*
@@ -143,7 +143,105 @@ var isValid = function (s) {
 // @lc code=end
 
 
-// 3 最小栈 力扣155
+// 最小栈 力扣155
+/*
+ * @lc app=leetcode.cn id=155 lang=javascript
+ *
+ * [155] 最小栈
+ */
+
+// @lc code=start
+/**
+ * initialize your data structure here.
+ */
+
+/**
+ * 使用一个辅助栈，与元素栈同步插入与删除，用于存储与每个元素对应的最小值
+ * 1.当一个元素要入栈时，取当前辅助栈的栈顶存储的最小值，与当前元素比较得出最小值，将这个最小值插入辅助栈中；
+ * 2.当一个元素要出栈时，把辅助栈的栈顶元素也一并弹出；
+ * 3.在任意一个时刻，栈内元素的最小值就存储在辅助栈的栈顶元素中；
+ */
+
+
+var MinStack = function () {
+  this.stack = []
+  // 用无穷大来初始最小值栈
+  this.minStack = [Infinity]
+};
+
+/** 
+ * @param {number} x
+ * @return {void}
+ */
+MinStack.prototype.push = function (x) {
+  this.stack.push(x)
+  this.minStack.push(Math.min(this.minStack[this.minStack.length - 1], x))
+};
+
+/**
+ * @return {void}
+ */
+MinStack.prototype.pop = function () {
+  this.stack.pop()
+  this.minStack.pop()
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.top = function () {
+  return this.stack[this.stack.length - 1]
+};
+
+/**
+ * @return {number}
+ */
+MinStack.prototype.getMin = function () {
+  return this.minStack[this.minStack.length - 1]
+};
+
+/**
+ * Your MinStack object will be instantiated and called as such:
+ * var obj = new MinStack()
+ * obj.push(x)
+ * obj.pop()
+ * var param_3 = obj.top()
+ * var param_4 = obj.getMin()
+ */
+// @lc code=end
+
+
+// 单调栈 力扣84
+/*
+ * @lc app=leetcode.cn id=84 lang=javascript
+ *
+ * [84] 柱状图中最大的矩形
+ */
+
+// @lc code=start
+/**
+ * @param {number[]} heights
+ * @return {number}
+ */
+// 使用单调栈
+var largestRectangleArea = function (heights) {
+  let maxArea = 0, stackTopIndex = 0
+  const stack = []
+  // heights头尾插入0
+  heights = [0, ...heights, 0]
+  for (let i = 0; i < heights.length; i++) {
+    // 当前元素比栈顶元素小 则出栈 这边是while循环 因为出栈一个元素之后 下一个元素可能会继续出栈 次数是不固定的！
+    while (heights[i] < heights[stack[stack.length - 1]]) {
+      stackTopIndex = stack.pop()
+      // 当前元素的左边界就是其前一个元素 右边界就是要入栈的元素
+      maxArea = Math.max(maxArea, heights[stackTopIndex] * (i - stack[stack.length - 1] - 1))
+    }
+    stack.push(i)
+  }
+  return maxArea
+};
+// @lc code=end
+
 
 
 
