@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      new Promise((resolve, reject) => {
+        //在里面执行异步任务 如果成功了执行resolve 失败了执行reject
+        setTimeout(() => {
+          // resolve("成功");
+          reject("失败")
+        }, 1000)
+      })
+        .then((value) => {
+          console.log("onResolved()1", value)
+        })
+        .catch((reason) => {
+          console.log("onRejected()1", reason)
+        })
+
+      //产生一个成功值为1的promise对象
+      const p1 = new Promise((resolve, reject) => {
+        resolve(1)
+      })
+      //产生一个成功值为2的promise对象 语法糖
+      const p2 = Promise.resolve(2)
+      //产生一个失败值为3的promise对象
+      const p3 = Promise.reject(3)
+
+      p1.then((value) => {
+        console.log(value)
+      })
+      p2.then((value) => {
+        console.log(value)
+      })
+      p3.catch((reason) => {
+        console.log(reason)
+      })
+    </script>
+  </body>
+</html>

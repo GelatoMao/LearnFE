@@ -56,6 +56,7 @@ function Set() {
   // clear方法 将items指向一个新对象 之前的对象因为没有引用指向它 自动会删除
   // 也可以迭代集合 用remove方法依次移除所有的值 但是这种方法太麻烦
   Set.prototype.clear = function () {
+    // items设置为对象 对象的keys本身就是一个集合类
     this.items = {}
   }
 

@@ -3,7 +3,6 @@
 * */
 module.exports = {
   data: 'lala',
-
   test() {
     console.log(this.data)
   }

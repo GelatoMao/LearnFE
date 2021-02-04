@@ -2,6 +2,7 @@
 // 1. 将字符串转成比较大的数字：hashCode
 // 2. 将大的数字hashCode压缩到数组范围(大小)之内
 
+// size数组大小
 function hashFunc(str, size) {
   // 1. 定义hashCode变量
   let hashCode = 0, index = 0

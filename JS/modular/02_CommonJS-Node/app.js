@@ -1,7 +1,6 @@
 /*
 * app.js文件主要用于汇总modules里面的一个个模块
-* JS代码可以在浏览器和node.js中运行，用commonjs模块化规范写的代码可以在
-* 这两种环境中运行 commonjs是唯一的一个双端模块化
+* JS代码可以在浏览器和node.js中运行，用commonjs模块化规范写的代码可以在这两种环境中运行 commonjs是唯一的一个双端模块化
 
 * 模块化要点：如何暴露 如何引入
 * 主文件，用于汇总各个模块
@@ -10,7 +9,6 @@
 * 2.如果引入的是自定义模块，必须写路径。
 * */
 let module1 = require('./modules/module1.js')
-//引入的同时，进行解构赋值
 let module2 = require('./modules/module2.js')
 //对象的解构赋值 引入的同时进行解构赋值
 let { data, test } = require('./modules/module1.js')
