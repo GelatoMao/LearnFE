@@ -1,6 +1,0 @@
-// import './x.css'
-// import './y.css'
-import './z.scss'
-import './j.less'
-import './l.styl'
-export default 'xxx'
