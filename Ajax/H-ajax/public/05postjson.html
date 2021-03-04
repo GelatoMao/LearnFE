@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>向服务器端传递JSON格式的请求参数</title>
+  </head>
+  <body>
+    <script>
+      //1.创建ajax对象
+      let xhr = new XMLHttpRequest();
+      //2.告诉ajax对象要向哪发送请求，以什么方式发送请求
+      //2.1请求方式 2.2请求地址
+      xhr.open("post", "http://localhost:8000/json");
+      //设置请求头中的content-text属性，通过请求头告诉服务器端客户端向服务器端传递的请求参数的格式是什么
+      xhr.setRequestHeader("Content-Type", "application/json");
+      //3.发送请求 请求参数必须要以字符串的格式传递  将json对象转换成json字符串
+      xhr.send(JSON.stringify({ name: "lisi", age: 50 }));
+      //4.获取服务器端响应到客户端的数据
+      //由于这个请求是客户端发往服务器端的，要经过网络，请求一定会受网络快慢的影响，所以响应需要经过一段时间才可以接收到，并且这个时间是不确定的时间，所以不可以在send方法后面直接拿到请求结果，在xhr对象下有一个onload事件，当ajax接收完服务器端的响应后，会触发该事件
+      xhr.onload = function () {
+        console.log(xhr.responseText);
+        console.log(typeof xhr.responseText);  //string
+      };
+    </script>
+  </body>
+</html>

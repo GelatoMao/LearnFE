@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>传递get参数</title>
+  </head>
+  <body>
+    <p>
+      <input type="text" id="username" name="" />
+    </p>
+    <p>
+      <input type="text" id="age" name="" />
+    </p>
+    <!-- 当前的提交按钮是一个普通的类型为button的按钮，因为现在使用的不是传统的表单提交，所以type类型不需要是submit -->
+    <p>
+      <input type="button" value="提交" id="btn" />
+    </p>
+    <script>
+      /*
+  准备2个文本控件，希望用户在第一个文本控件中输入姓名，在第二个文本控件中输入年龄，当用户点击提交按钮的时候，希望发送一个ajax请求，将用户输入的姓名和年龄作为请求参数传递到服务器端 
+  */
+      let btn = document.getElementById("btn");
+      let username = document.getElementById("username");
+      let age = document.getElementById("age");
+      btn.onclick = function () {
+        //创建ajax对象
+        const xhr = new XMLHttpRequest();
+        //获取用户在文本框中输入的值
+        let nameValue = username.value;
+        let ageValue = age.value;
+        //将用户输入的数据拼接成字符串username=123&age=456 在传统的表单中，参数是拼接好的，但是在ajax中，需要我们自己拼接
+        let params = `username=${nameValue}&age=${ageValue}`;
+        //配置ajax对象
+        xhr.open("get", "http://localhost:8000/get?" + params);
+        //发送请求
+        xhr.send();
+        //获取服务器端响应的数据
+        xhr.onload = function () {
+          console.log(xhr.responseText);
+        };
+      };
+    </script>
+  </body>
+</html>

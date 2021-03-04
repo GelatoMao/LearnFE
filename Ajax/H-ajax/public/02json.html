@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>处理服务器端返回的JSON数据</title>
+  </head>
+  <body>
+    <script>
+      //1.创建ajax对象
+      let xhr = new XMLHttpRequest();
+      //2.告诉ajax对象要向哪发送请求，以什么方式发送请求
+      //2.1请求方式 2.2请求地址
+      xhr.open("get", "http://localhost:8000/responseData");
+      //3.发送请求
+      xhr.send();
+      //4.获取服务器端响应到客户端的数据
+      //由于这个请求是客户端发往服务器端的，要经过网络，请求一定会受网络快慢的影响，所以响应需要经过一段时间才可以接收到，并且这个时间是不确定的时间，所以不可以在send方法后面直接拿到请求结果，在xhr对象下有一个onload事件，当ajax接收完服务器端的响应后，会触发该事件
+      xhr.onload = function () {
+        console.log(xhr.responseText);
+        //string类型  服务器响应的是一个JSON对象，但实际上在传输过程中是必须转换成字符串形式进行传输的，这是规定，所以在客户端拿到的是一个json字符串，我们需要将json字符串转换成json对象类型
+        console.log(typeof xhr.responseText); //string
+        //将json字符串转换成json对象 对象在控制台中是可以展开的
+        let responseText = JSON.parse(xhr.responseText);
+        console.log(responseText);
+        let str = `<h2>${responseText.name}</h2>`;
+        document.body.innerHTML = str;
+      };
+    </script>
+  </body>
+</html>
