@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //默认值可以与解构赋值结合使用
+      function connect(options) {}
+
+      //与解构赋值结合使用
+      function connect({host,username,password,port})
+      connect({
+        host: "localhost",
+        username: "root",
+        password: "root",
+        port: 3306,
+      });
+    </script>
+  </body>
+</html>

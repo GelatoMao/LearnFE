@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        width: 200px;
+        height: 200px;
+        background-color: #58a;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="ad"></div>
+    <script>
+
+      //箭头函数适合与this无关的回调，定时器，数组的方法回调
+      //箭头函数不适合与this有关的回调 事件回调（onclick等） 对象的方法
+
+      {
+        name:'aaa',
+        getName:function(){
+          this.name //这边的this指向外面大括号的对象
+        }
+      }
+
+      //但是如果变成箭头函数的话，this便不再指向对象，而是指向外层作用域的this值 [怎么感觉这边有点乱，好像不太对]
+      {
+        name:'aaa',
+        getName:()=>{
+          this.name
+        }
+      }
+
+      //需求1：点击dvi 2s后颜色变成粉色
+      let ad = document.getElementById("ad");
+      ad.addEventListener("click", function () {
+        setTimeout(function () {
+          //但是这边会报错，因为此时的this指向的是window,以前是在外面保存好this的值  let that = this 现在可以通过箭头函数来实现
+          this.style.background = "pink";
+        }, 2000);
+      });
+
+      //箭头函数实现
+      ad.addEventListener("click", function () {
+        //箭头函数声明时所在的作用域是function函数作用域下，而function函数的this是指向事件源ad,所以可以找到元素
+        setTimeout(()=>{
+          this.style.background="pink"
+        },2000);
+    </script>
+  </body>
+</html>

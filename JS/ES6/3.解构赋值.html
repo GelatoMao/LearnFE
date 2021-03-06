@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //ES6允许按照一定的模式从数组和对象中提取值，对变量进行赋值，称为解构赋值
+      //1.数组的解构
+      const F4 = ["1", "2", "3", "4"];
+      let [a, b, c, d] = F4;
+      console.log(a, b, c, d);
+      //2.对象的解构
+      const hha = {
+        name: "aa",
+        age: "18",
+        eat: function () {
+          console.log("eat");
+        },
+      };
+
+      let { name, age, eat } = hha;
+      //平时调用eat方法的时候一般是hha.eat(),但是通过对象解构之后 let {eat} = hha 可以直接通过eat()来调用
+    </script>
+  </body>
+</html>

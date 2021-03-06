@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      //[...]扩展运算符能将数组转换为逗号分隔的参数序列
+
+      const arr = ["1", "2", "3"];
+
+      function f() {
+        console.log(arguments);
+      }
+      f(...arr); //相当于f('1','2','3') 三点运算符放在调用的地方
+
+      //扩展运算符的应用
+      //1.数组合并
+      const a = ["1", "2"];
+      const b = ["3", "4"];
+      //es5进行合并
+      const ab = a.concat(b);
+      //使用扩展运算符进行合并
+      const ab1 = [...a, ...b];
+      //因为三点运算符将数组转化成参数序列，实际上上述就类似['1','2','3','4']
+
+      //2.数组克隆 但注意如果数组里面有引用类型的话 这种克隆属于浅拷贝
+      const b = ['a','b','c']
+      const b1 = [...b]
+
+    </script>
+  </body>
+</html>
